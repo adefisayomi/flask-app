@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel='stylesheet' href='{{ url_for("static", filename= "css/index.css") }}'>
+
+
+<div id='home_page'>
+    <form method="post">
+        <input type='text' name='todo' id='todo' placeholder="Enter your todo here...">
+        <input  type='submit' name='submit' id='submit' value="+">
+    </form>
+
+    <hr>
+    
+    {% if todos %}
+        <ul>
+            {% for todo in todos %}
+    
+            <li> {{ todo }} <a href='/remove?item={{ todos.index(todo) }}'> x </a></li>
+    
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not added anything yet.</p>
+    {% endif %}
+    
+</div>
+
+{% endblock %}
